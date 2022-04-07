@@ -22,8 +22,10 @@ class MainActivity : AppCompatActivity() {
         resulttext = findViewById(R.id.tv_result)
 
         val countButton : Button = findViewById(R.id.btn_count)
-        countButton.setOnClickListener{ countUp()}
+        countButton.setOnClickListener{ countUp() }
 
+        val resetButton : Button = findViewById(R.id.btn_reset)
+        resetButton.setOnClickListener{ reset() }
     }
 
     private fun rollDice() {
@@ -44,5 +46,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun reset(){
+        resulttext.text = 0.toString()
+    }
 
 }
