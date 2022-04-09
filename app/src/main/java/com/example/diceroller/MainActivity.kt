@@ -3,12 +3,13 @@ package com.example.diceroller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var resulttext : TextView
+    private lateinit var diceImageView: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,35 +20,30 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.btn_roll)
         rollButton.setOnClickListener{ rollDice() }
 
-        resulttext = findViewById(R.id.tv_result)
+        diceImageView = findViewById(R.id.iv_dice_image)
 
-        val countButton : Button = findViewById(R.id.btn_count)
-        countButton.setOnClickListener{ countUp() }
-
-        val resetButton : Button = findViewById(R.id.btn_reset)
-        resetButton.setOnClickListener{ reset() }
     }
 
     private fun rollDice() {
         //Toast.makeText(this, "Button clicked",Toast.LENGTH_SHORT).show()
-        resulttext.text = (1..6).random().toString()
-    }
+        val  randomInt = (1..6).random()
 
-    private fun countUp() {
-
-        with(resulttext){
-            when(this.text){
-                "Hello World!" -> this.text = 1.toString()
-                "6" -> this.text
-                else -> this.text = (this.text.toString().toInt() + 1).toString()
-            }
+        val drawableResource = when(randomInt){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            6 -> R.drawable.dice_6
+            else -> R.drawable.dice_6
         }
 
-
+        diceImageView.setImageResource(drawableResource)
     }
 
+
     private fun reset(){
-        resulttext.text = 0.toString()
+        //resulttext.text = 0.toString()
     }
 
 }
