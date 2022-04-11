@@ -10,6 +10,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
 
     private lateinit var diceImageView: ImageView
+    private lateinit var diceImageView2: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +22,21 @@ class MainActivity : AppCompatActivity() {
         rollButton.setOnClickListener{ rollDice() }
 
         diceImageView = findViewById(R.id.iv_dice_image)
+        diceImageView2 = findViewById(R.id.iv_dice_image2)
 
     }
 
     private fun rollDice() {
         //Toast.makeText(this, "Button clicked",Toast.LENGTH_SHORT).show()
-        val  randomInt = (1..6).random()
+        diceImageView.setImageResource(getRandomDiceImage())
+
+        diceImageView2.setImageResource(getRandomDiceImage())
+
+    }
+
+    private fun getRandomDiceImage() : Int {
+
+        val randomInt : Int = (1..6).random()
 
         val drawableResource = when(randomInt){
             1 -> R.drawable.dice_1
@@ -38,12 +48,9 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImageView.setImageResource(drawableResource)
+        return drawableResource
+
     }
 
-
-    private fun reset(){
-        //resulttext.text = 0.toString()
-    }
 
 }
